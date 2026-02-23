@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    div{
+     background-color: chocolate;
+    }
+</style>
+<body onload="pageload()">
+    <center>
+    <div>
+        <h2>NotePad</h2>
+        <textarea name="area" id="text" placeholder="Enter your Text...." rows="20" cols="65"></textarea> 
+         <br><br>
+         characters: <span id="char">0</span><br><br>
+        <button onclick="save()" id="sav">Save</button>
+        <button onclick="clearNote()" id="clr">Clear</button>
+
+    </div>
+    </center>
+        
+        <script>
+             function save(){
+                let note = document.getElementById("text").value;
+                localStorage.setItem("mynote", note);
+                alert("Note is saved");
+             }
+             
+             function pageload(){
+                let savenote=localStorage.getItem("mynote");
+                if(savenote!= null){
+                    document.getElementById("text").value=savenote;
+                }
+             }
+             function clearNote(){
+               localStorage.removeItem("mynote");
+                document.getElementById("text").value="";
+                alert("cleared the Note");
+             }
+            let textarea = document.getElementById("text");
+            let count = document.getElementById("char");
+            textarea.addEventListener("input",function(){
+                count.textContent=textarea.value.length;
+            });
+        </script>
+    
+</body>
+</html>
